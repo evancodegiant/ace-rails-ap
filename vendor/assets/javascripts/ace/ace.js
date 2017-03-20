@@ -2426,8 +2426,11 @@ function DefaultHandlers(mouseHandler) {
             if (selectionEmpty || button == 1)
                 editor.selection.moveToPosition(pos);
             editor.$blockScrolling--;
-            if (button == 2)
+            if (button == 2) {
                 editor.textInput.onContextMenu(ev.domEvent);
+                if (!useragent.isMozilla)
+                    ev.preventDefault();
+            }
             return; // stopping event here breaks contextmenu on ff mac
         }
 
